@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import Particles from "react-tsparticles";
 import Navigation from "./components/Navigation/Navigation";
 import Logo from "./components/Logo/Logo";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
+import Rank from "./components/Rank/Rank";
 import "./App.css";
-import Particles from "react-tsparticles";
 
 class App extends Component {
   render() {
@@ -92,6 +93,7 @@ class App extends Component {
         />
         <Navigation />
         <Logo />
+        <Rank />
         <ImageLinkForm />
         {/* <FaceRecognition />*/}
       </div>
