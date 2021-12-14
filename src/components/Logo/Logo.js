@@ -1,20 +1,23 @@
 import React from 'react';
+import brainLogo from './brain.png';
 import Tilt from 'react-parallax-tilt';
+import './Logo.css';
 
 const Logo = () => {
   return (
-    <div className="ma4 mt0">
-      <Tilt
-        className="track-on-window"
-        perspective={500}
-        style={{ height: '150px', width: '150px', background: 'blue' }}
-        trackOnWindow={true}
-      >
-        <div className="inner-element">
-          <div>Smart Brain</div>
-        </div>
-      </Tilt>
-    </div>
+    <Tilt
+      className="ma4 mt0 track-on-window"
+      perspective={500}
+      glareEnable={true}
+      glareMaxOpacity={0.75}
+      glarePosition="all"
+      scale={1.02}
+      trackOnWindow={true}
+    >
+      <div className="Tilt inner-element">
+        <img src={brainLogo} alt="Smart Brain App Logo" />
+      </div>
+    </Tilt>
   );
 };
 
