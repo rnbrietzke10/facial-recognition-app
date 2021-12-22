@@ -1,36 +1,36 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class Signin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      signInEmail: '',
-      signInPassword: '',
+      signInEmail: "",
+      signInPassword: "",
     };
   }
-  onEmailChange = (event) => {
+  onEmailChange = event => {
     this.setState({ signInEmail: event.target.value });
   };
 
-  onPasswordChange = (event) => {
+  onPasswordChange = event => {
     this.setState({ signInPassword: event.target.value });
   };
 
   onSubmitSignIn = () => {
     // Send to server
-    fetch('http://localhost:8000/signin', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("https://sleepy-refuge-00982.herokuapp.com/signin", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: this.state.signInEmail,
         password: this.state.signInPassword,
       }),
     })
-      .then((response) => response.json())
-      .then((user) => {
+      .then(response => response.json())
+      .then(user => {
         if (user.id) {
           this.props.loadUser(user);
-          this.props.onRouteChange('home');
+          this.props.onRouteChange("home");
         }
       });
   };
@@ -78,7 +78,7 @@ class Signin extends Component {
             </div>
             <div className="lh-copy mt3">
               <p
-                onClick={() => onRouteChange('register')}
+                onClick={() => onRouteChange("register")}
                 className="f6 link dim black db pointer"
               >
                 Register
