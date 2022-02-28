@@ -8,6 +8,19 @@ import 'tachyons';
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <p className="icon">
+      <a
+        target="_blank"
+        href="https://icons8.com/icon/GIIxoRALwHyG/recognition"
+      >
+        Recognition{' '}
+      </a>{' '}
+      icon by{' '}
+      <a target="_blank" href="https://icons8.com">
+        {' '}
+        Icons8
+      </a>
+    </p>
   </React.StrictMode>,
   document.getElementById('root')
 );

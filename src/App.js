@@ -1,26 +1,26 @@
-import React, { Component } from "react";
-import Particles from "react-tsparticles";
-import Navigation from "./components/Navigation/Navigation";
-import Logo from "./components/Logo/Logo";
-import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
-import Rank from "./components/Rank/Rank";
-import FaceRecognition from "./FaceRecognition/FaceRecognition";
-import Signin from "./components/Signin/Signin";
-import Register from "./components/Register/Register";
-import "./App.css";
+import React, { Component } from 'react';
+import Particles from 'react-tsparticles';
+import Navigation from './components/Navigation/Navigation';
+import Logo from './components/Logo/Logo';
+import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
+import Rank from './components/Rank/Rank';
+import FaceRecognition from './FaceRecognition/FaceRecognition';
+import Signin from './components/Signin/Signin';
+import Register from './components/Register/Register';
+import './App.css';
 
 const particlesOptions = {
   fpsLimit: 60,
   interactivity: {
-    detectsOn: "canvas",
+    detectsOn: 'canvas',
     events: {
       onClick: {
         enable: true,
-        mode: "push",
+        mode: 'push',
       },
       onHover: {
         enable: true,
-        mode: "repulse",
+        mode: 'repulse',
       },
       resize: true,
     },
@@ -42,10 +42,10 @@ const particlesOptions = {
   },
   particles: {
     color: {
-      value: "#ffffff",
+      value: '#ffffff',
     },
     links: {
-      color: "#ffffff",
+      color: '#ffffff',
       distance: 150,
       enable: true,
       opacity: 0.5,
@@ -55,9 +55,9 @@ const particlesOptions = {
       enable: true,
     },
     move: {
-      direction: "none",
+      direction: 'none',
       enable: true,
-      outMode: "bounce",
+      outMode: 'bounce',
       random: false,
       speed: 2,
       straight: false,
@@ -73,7 +73,7 @@ const particlesOptions = {
       value: 0.5,
     },
     shape: {
-      type: "circle",
+      type: 'circle',
     },
     size: {
       random: true,
@@ -84,17 +84,17 @@ const particlesOptions = {
 };
 
 const initialState = {
-  input: "",
-  imageUrl: "",
+  input: '',
+  imageUrl: '',
   box: {},
-  route: "signin",
+  route: 'signin',
   isSignedIn: false,
   user: {
-    id: "",
-    name: "",
-    email: "",
+    id: '',
+    name: '',
+    email: '',
     entries: 0,
-    joined: "",
+    joined: '',
   },
 };
 
@@ -104,7 +104,7 @@ class App extends Component {
     this.state = initialState;
   }
 
-  loadUser = data => {
+  loadUser = (data) => {
     this.setState({
       user: {
         id: data.id,
@@ -118,12 +118,12 @@ class App extends Component {
 
   // https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80
 
-  calculateFaceLocation = data => {
-    console.log(data);
+  calculateFaceLocation = (data) => {
+    console.log('Data', data);
     const clarifaiFace =
       data.outputs[0].data.regions[0].region_info.bounding_box;
 
-    const image = document.getElementById("inputImage");
+    const image = document.getElementById('inputImage');
     const width = Number(image.width);
     const height = Number(image.height);
     return {
@@ -134,49 +134,49 @@ class App extends Component {
     };
   };
 
-  displayFaceBox = box => {
+  displayFaceBox = (box) => {
     this.setState({ box: box });
   };
 
-  onInputChange = event => {
+  onInputChange = (event) => {
     this.setState({ input: event.target.value });
   };
 
   onPictureSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    fetch("https://sleepy-refuge-00982.herokuapp.com/imageurl", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
+    fetch('https://enigmatic-eyrie-83320.herokuapp.com/imageurl', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         input: this.state.input,
       }),
     })
-      .then(response => response.json())
-      .then(response => {
+      .then((response) => response.json())
+      .then((response) => {
         if (response) {
-          fetch("https://sleepy-refuge-00982.herokuapp.com/image", {
-            method: "put",
-            headers: { "Content-Type": "application/json" },
+          fetch('https://enigmatic-eyrie-83320.herokuapp.com/image', {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               id: this.state.user.id,
             }),
           })
-            .then(response => response.json())
-            .then(count => {
+            .then((response) => response.json())
+            .then((count) => {
               this.setState(Object.assign(this.state.user, { entries: count }));
             })
             .catch(console.log);
           this.displayFaceBox(this.calculateFaceLocation(response));
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
-  onRouteChange = route => {
-    if (route === "signout") {
+  onRouteChange = (route) => {
+    if (route === 'signout') {
       this.setState(initialState);
-    } else if (route === "home") {
+    } else if (route === 'home') {
       this.setState({ isSignedIn: true });
     }
     this.setState({ route: route });
@@ -191,7 +191,7 @@ class App extends Component {
           isSignedIn={isSignedIn}
           onRouteChange={this.onRouteChange}
         />
-        {route === "home" ? (
+        {route === 'home' ? (
           <div>
             <Logo />
             <Rank
@@ -204,7 +204,7 @@ class App extends Component {
             />
             <FaceRecognition box={box} imageUrl={imageUrl} />
           </div>
-        ) : route === "signin" ? (
+        ) : route === 'signin' ? (
           <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
         ) : (
           <Register

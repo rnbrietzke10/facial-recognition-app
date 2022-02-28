@@ -1,43 +1,43 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      email: "",
-      password: "",
+      name: '',
+      email: '',
+      password: '',
     };
   }
 
-  onNameChange = event => {
+  onNameChange = (event) => {
     this.setState({ name: event.target.value });
   };
 
-  onEmailChange = event => {
+  onEmailChange = (event) => {
     this.setState({ email: event.target.value });
   };
 
-  onPasswordChange = event => {
+  onPasswordChange = (event) => {
     this.setState({ password: event.target.value });
   };
 
   onSubmitSignIn = () => {
     // Send to server
-    fetch("https://sleepy-refuge-00982.herokuapp.com/register", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
+    fetch('https://enigmatic-eyrie-83320.herokuapp.com/register', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: this.state.email,
         password: this.state.password,
         name: this.state.name,
       }),
     })
-      .then(response => response.json())
-      .then(user => {
+      .then((response) => response.json())
+      .then((user) => {
         if (user.id) {
           this.props.loadUser(user);
-          this.props.onRouteChange("home");
+          this.props.onRouteChange('home');
         }
       });
   };

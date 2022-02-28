@@ -1,7 +1,7 @@
-import React from "react";
-import Tilt from "react-parallax-tilt";
-import brain from "./brain.png";
-import "./Logo.css";
+import React from 'react';
+import Tilt from 'react-parallax-tilt';
+import brain from './brain.png';
+import './Logo.css';
 
 const Logo = () => {
   return (
@@ -14,7 +14,7 @@ const Logo = () => {
         <div className="inner-element pa3">
           <div>
             <img
-              style={{ paddingTop: "5px" }}
+              style={{ paddingTop: '5px' }}
               src={brain}
               alt="Smart Brain App Logo"
             />
