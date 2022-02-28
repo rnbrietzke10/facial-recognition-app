@@ -18,6 +18,7 @@ class Signin extends Component {
 
   onSubmitSignIn = () => {
     // Send to server
+
     fetch('https://enigmatic-eyrie-83320.herokuapp.com/signin', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
