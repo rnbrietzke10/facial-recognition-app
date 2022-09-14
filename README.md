@@ -1,3 +1,8 @@
+# Links to Backend
+[REST API](https://github.com/rnbrietzke10/facial-recognition-app-api)
+[gRPC API](https://github.com/rnbrietzke10/facial-recognition-app-grpc-api/tree/main)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
